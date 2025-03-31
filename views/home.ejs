@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../public/css/home.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Email : <%= currUser.email %></h1>
+        <form action="/<%= currUser._id %>/food_details">
+            <button>Donate</button>
+        </form>
+        
+        <%if(!currUser) { %>
+        <a href="/donar_signup"> Signup as Donar </a>
+        <a href="/ngo_signup"> Signup as NGO </a>
+        <a href="/login"> Login as Donar </a>
+        <% } %>
+        <%if(currUser) { %>
+        <a href="/logout">Logout</a>
+        <% } %>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
