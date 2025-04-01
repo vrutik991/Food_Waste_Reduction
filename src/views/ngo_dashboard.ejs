@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Dashboard</title>
+    
+</head>
+
+<body>
+    <div class="container">
+        <h1>NGO Dashboard</h1>
+        <h2 class="message"></h2>
+        <a href="/logout">logout</a>
+    </div>
+    <!-- <script src="../public/js/pubnub.js"></script> -->
+     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.js"></script>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.min.js"></script>
+    <script>
+        console.log("In UI *******************************")
+        const para = document.querySelector(".message");
+        // const Pubnub = require("")
+        var pubnub = new PubNub({
+            publishKey: "pub-c-8a75198e-e9b5-4595-9707-7bee8da7c913",
+            subscribeKey: "sub-c-c1f806e6-b3b7-4a4c-8f76-7d9a54d67477",
+            userId: 'myUniqueUserId'
+        })
+
+        pubnub.subscribe({
+            channels: ["donate"],
+        })
+
+        pubnub.addListener({
+            message: function (m) {
+                console.log(JSON.stringify(m.message.description.message));
+                para.innerHTML = JSON.stringify(m.message.description.message);
+                alert("New Notification: " + JSON.stringify(m.message.description.message));
+            }
+        })
+    </script>
+</body>
+
+</html>
