@@ -11,7 +11,10 @@
 <body>
     <div class="container">
         <h1>NGO Dashboard</h1>
-        <h2 class="message"></h2>
+        <p>NGO ID: <%= ngoId %></p>
+        <h1>Requests to You: </h1>
+        <h2 class="email"></h2>
+        <p class="message"></p>
         <a href="/logout">logout</a>
     </div>
     <!-- <script src="../public/js/pubnub.js"></script> -->
@@ -19,7 +22,10 @@
     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.min.js"></script>
     <script>
         console.log("In UI *******************************")
-        const para = document.querySelector(".message");
+        const email = document.querySelector(".email");
+        const message = document.querySelector(".message");
+        const ngoId =`<%= ngoId %>`;
+        console.log(ngoId);
         // const Pubnub = require("")
         var pubnub = new PubNub({
             publishKey: "pub-c-8a75198e-e9b5-4595-9707-7bee8da7c913",
@@ -28,14 +34,15 @@
         })
 
         pubnub.subscribe({
-            channels: ["donate"],
+            channels: [`donate${ngoId}`],
         })
 
         pubnub.addListener({
             message: function (m) {
                 console.log(JSON.stringify(m.message.description.message));
-                para.innerHTML = JSON.stringify(m.message.description.message);
-                alert("New Notification: " + JSON.stringify(m.message.description.message));
+                email.innerHTML = `Donar Email: ${JSON.stringify(m.message.email)}`;
+                message.innerHTML = `Donar Message: ${JSON.stringify(m.message.description.message)}`;
+                alert(m.message.email + " " +JSON.stringify(m.message.description.message));
             }
         })
     </script>

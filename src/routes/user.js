@@ -27,6 +27,9 @@ router.post("/login", async (req, res) => {
                         httpOnly:true,
                     });
                     // res.header("Authorization", `Bearer ${token}`);
+                    res.locals.currUser = Isuser;
+                    console.log(Isuser)
+                    console.log("In login post route ",res.locals.currUser);
                     console.log(`in post : ${Isuser.id}`)
                     res.redirect(`/home`); 
                     // res.redirect(`/`);

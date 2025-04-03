@@ -59,12 +59,19 @@ app.use(cookieParser());
 
 app.use((req,res,next)=>
 {
+    res.locals.currUser = req.user;
+    console.log("in currUser middleware",res.locals.currUser);
     JSON.stringify(req.user);
     next();
 })
 
+app.get("/index",(req,res)=>
+{
+    res.render("index.ejs");
+})
+
 app.use("/",userRouter);
-app.use("/food_details",donationRouter);
+app.use("/showNgo",donationRouter);
 
 
 var pubnub = new Pubnub({
@@ -74,9 +81,10 @@ var pubnub = new Pubnub({
 })
 
 
-app.get("/ngo_dashboard",authenticateToken, (req, res) => {
-    const myNgo = JSON.stringify(req.user.id)
-    const myNgo_data = Ngo.findOne({myNgo})
+app.get("/ngo_dashboard",authenticateToken,async (req, res) => {
+    const ngoId = JSON.stringify(req.user.id).slice(1,-1);
+    console.log(`ngo get: ${ngoId}`)
+    // const myNgo_data = Ngo.findOne({myNgo})
     // console.log(myNgo_data)
     
     // pubnub.subscribe({
@@ -89,8 +97,9 @@ app.get("/ngo_dashboard",authenticateToken, (req, res) => {
     //         console.log(`notificaiton: ${JSON.stringify(m.message.title)}`);
     //     }
     // })
-
-    res.render("ngo_dashboard.ejs");
+    const foodDetails = await FoodDetails.find({donatedTo:ngoId})
+    console.log(`foodDetails: *** ${foodDetails}`)
+    res.render("ngo_dashboard.ejs" , {ngoId , foodDetails});
 })
 
 // API route to send email notification

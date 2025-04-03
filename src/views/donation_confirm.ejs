@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1> NGO Name : <%= selected_ngo.name %></h1>
-    <form action="/food_details/showNgo/donation_confirm/ngo_dashboard" method="POST">
+    <form action="/food_details/showNgo/<%= selected_ngo.id %>/ngo_dashboard" method="POST">
         <label for="message"> Any Message : </label>
         <textarea name="message" id="message"></textarea>
         <h2>Food Details : </h2>

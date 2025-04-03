@@ -1,28 +1,475 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="../public/css/home.css">
-</head>
+<% layout('/layouts/boilerplate') -%>
 <body>
-    <div style="display: flex; justify-content: space-between;">
-        <h1>Email : </h1>
-        <form action="/food_details">
-            <button>Donate</button>
-        </form>
+    <main>
+        <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="item"
+                style="background-image:url('../assets/images/image-1.avif') ; background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="header-text">
+                        <h1>
+                            Give a little.
+                            <br>
+                            Change a lot.
+                        </h1>
+                        <p>Lorem ipsum is simply dummy text of printing and industry.
+                            <br>
+                            Lorem ipsum the industry's dummy text ever since.
+                        </p>
+                        <div class="donate_btn">
+                            <a href="/food_details/">DONATE NOW<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url('../assets/images/image-2.avif'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="header-text">
+                        <h1>
+                            Give a little.
+                            <br>
+                            Change a lot.
+                        </h1>
+                        <p>Lorem ipsum is simply dummy text of printing and industry.
+                            <br>
+                            Lorem ipsum the industry's dummy text ever since.
+                        </p>
+                        <div class="donate_btn">
+                            <a href="/food_details">DONATE NOW<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url('assets/images/image-3.avif'); background-size: cover; background-position: center;">
+                <div class="container">
+                    <div class="header-text">
+                        <h1>
+                            Give a little.
+                            <br>
+                            Change a lot.
+                        </h1>
+                        <p>Lorem ipsum is simply dummy text of printing and industry.
+                            <br>
+                            Lorem ipsum the industry's dummy text ever since.
+                        </p>
+                        <div class="donate_btn">
+                            <a href="/food_details">DONATE NOW<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="help">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img class="help-image" src="assets/images/help-image.avif" alt="">
+                    </div>
+                    <div class="col-lg-6 right-content">
+                        <h6>HELP THE POOR PEOPLE</h6>
+                        <h3>Thousand of children are waiting for help!</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis eveniet ratione ex.
+                            Quas animi iste esse dolores, voluptatum adipisci culpa necessitatibus provident vitae
+                            mollitia et, at cumque? Sint, alias ipsum.</p>
+                        <div class="help-donate_btn">
+                            <a href="/food_details">DONATE TODAY</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row help-cards">
+                    <div class="col-lg-4 help-card">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-1 col-sm-1 left"><i class="fa-regular fa-heart"></i></div>
+                            <div class="col-lg-10 col-md-11 col-sm-11 right">
+                                <h6>Donate Now</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore aspernatur Lorem
+                                    ipsum dolor sit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 help-card">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-1 col-sm-1 left"><i class="fa-regular fa-face-smile"></i></div>
+                            <div class="col-lg-10 col-md-11 col-sm-11 right">
+                                <h6>Join Us Now</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore aspernatur Lorem
+                                    ipsum dolor sit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 help-card">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-1 col-sm-1 left"><i class="fa-solid fa-globe"></i></div>
+                            <div class="col-lg-10 col-md-11 col-sm-11 right">
+                                <h6>Join Us Now</h6>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore aspernatur Lorem
+                                    ipsum dolor sit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ngo">
+            <div class="container">
+                <h6>EVERYONE.EVERYWHERE.EQUAL VALUE</h6>
+                <p>We are Leadgen. Non-profit,fundraising,NGO organizations. Our Leadgen activities are taken place
+                    around the world, let contribute to them with us by your hand to be a better life.</p>
+            </div>
+        </section>
+        <section class="our-cause">
+            <div class="container">
+                <div class="headings">
+                    <h2 class="heading">OUR CAUSES</h2>
+                    <p class="sub-heading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laudantium,
+                        tempore culpa debitis, quasi veritatis velit, impedit eius recusandae eum aperiam nam nobis
+                        perferendis reprehenderit animi hic facilis totam esse.</p>
+                </div>
+                <div class="row causes-cards">
+                    <div class="col-lg-3 col-md-6 col-sm-6 causes-card">
+                        <div class="upper">
+                            <i class="fa-solid fa-droplet"></i>
+                            <h6>CLEAN WATER</h6>
+                        </div>
+                        <div class="lower">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisiFcing elit. Provident ea, illum rem
+                                eveniet
+                                officia eos explicabo nesciunt!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 causes-card">
+                        <div class="upper">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                            <h6>SPONSERSHIP</h6>
+                        </div>
+                        <div class="lower">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisiFcing elit. Provident ea, illum rem
+                                eveniet
+                                officia eos explicabo nesciunt!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 causes-card">
+                        <div class="upper">
+                            <i class="fa-solid fa-shield-heart"></i>
+                            <h6>HEALTH PRO</h6>
+                        </div>
+                        <div class="lower">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisiFcing elit. Provident ea, illum rem
+                                eveniet
+                                officia eos explicabo nesciunt!</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 causes-card">
+                        <div class="upper">
+                            <i class="fa-solid fa-book"></i>
+                            <h6>BOOKS</h6>
+                        </div>
+                        <div class="lower">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisiFcing elit. Provident ea, illum rem
+                                eveniet
+                                officia eos explicabo nesciunt!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="charity">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-12 left" style="background-image: url('assets/images/charity-img.avif');">
+                    </div>
+                    <div class="col-lg-6 col-12 right">
+                        <h3>Big Charity Funds For Childs.</h3>
+                        <p>Donate & support our work today.</p>
+                        <hr>
+                        <div class="menu">
+                            <h6>OUR MISSION</h6>
+                            <h6>OUR VISION</h6>
+                            <h6>MOST TRUSTED</h6>
+                            <h6>OUR EXPERIENCE</h6>
+                        </div>
+                        <div class="menu_items">
+                            <div class="menu-item">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum a at nam iste,
+                                    cupiditate
+                                    voluptatem repudiandae quod sed tempora quos ab illum unde facilis sapiente expedita
+                                    quis, praesentium nulla ratione.
+                                </p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, facere molestiae.
+                                    In
+                                    incidunt, consequatur dolor, eligendi beatae consectetur cumque quas quaerat,
+                                    ducimus ea
+                                    reiciendis cupiditate temporibus sapiente recusandae vitae! Odio.</p>
+                            </div>
+                            <div class="menu-item">
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus voluptas rem at
+                                    error exercitationem assumenda fugit, cupiditate molestiae ipsam, quod vero dicta
+                                    optio aliquid blanditiis nisi tenetur earum, quas ratione?
+                                </p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quis architecto
+                                    numquam aliquid ut. Dignissimos aspernatur autem ratione porro qui? Illo distinctio
+                                    accusamus impedit aliquid facere, iure cupiditate perspiciatis quo!</p>
+                            </div>
+                            <div class="menu-item">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo adipisci fugit
+                                    minima minus molestias quod aliquam eveniet doloremque officiis assumenda eligendi
+                                    beatae quas, ipsum ut et totam nesciunt nihil error!
+                                </p>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos praesentium eligendi
+                                    aliquid ratione, minima tempora, magnam maxime dolores magni inventore sapiente,
+                                    quasi necessitatibus fuga at! Voluptates ex ut dolorum enim..</p>
+                            </div>
+                            <div class="menu-item">
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque placeat fugiat quo
+                                    recusandae, fuga eaque ullam dolor iste, eos atque explicabo deleniti incidunt
+                                    laboriosam amet aliquam! Assumenda consequuntur optio excepturi?
+                                </p>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, quaerat laborum.
+                                    Odio impedit soluta natus voluptate inventore quasi dolores qui, iure quos
+                                    architecto voluptatibus, ab consectetur quae maxime laudantium modi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="you-help">
+            <div class="container">
+                <div class="headings">
+                    <div class="heading">
+                        <h2>HOW CAN YOU HELP</h2>
+                    </div>
+                    <div class="sub-heading">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus, deserunt quas.
+                            Ullam aliquam eligendi consequatur laborum natus vitae labore unde eius aperiam ut, quia
+                            minima rem blanditiis! Beatae, dolores facilis.</p>
+                    </div>
+                </div>
+                <div class="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/dA8Smj5tZOQ"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="row you-help-cards">
+                    <div class="col-lg-3 col-md-6 col-sm-6 you-help-card">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <h6>DONATE MONEY</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, iure odio culpa atque
+                            temporibus quia nam doloremque quam!</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 you-help-card">
+                        <i class="fa-regular fa-hand-back-fist"></i>
+                        <h6>BECOME VOLUNTEER</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, iure odio culpa atque
+                            temporibus quia nam doloremque quam!</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 you-help-card">
+                        <i class="fa-solid fa-book-open"></i>
+                        <h6>CHILD EDUCATION</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, iure odio culpa atque
+                            temporibus quia nam doloremque quam!</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 you-help-card">
+                        <i class="fa-regular fa-heart"></i>
+                        <h6>MEDICINE</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, iure odio culpa atque
+                            temporibus quia nam doloremque quam!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cindy"
+            style="background-image: url('assets/images/cindy.avif'); background-size: cover; background-position: center;">
+            <div class="container-fluid">
+                <div class="cindy-content">
+                    <h6>YOUR LITTLE HELD NEEDED</h6>
+                    <h3>HELP CINDY BACK TO SCHOOL</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet vitae, fugiat beatae fugit
+                        deleniti
+                        totam numquam voluptatibus debitis! In ipsa repellat quibusdam at eos aperiam consequuntur nulla
+                        cupiditate porro harum!</p>
+                    <div class="help-donate_btn">
+                        <a href="">DONATE NOW<i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="calculator">
+            <div class="container">
+                <div class="row cal-items">
+                    <div class="col-lg-3 col-md-6 col-sm-6 cal-item">
+                        <h3 id="1500">0</h3>
+                        <p>Successful Projects</p>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 cal-item">
+                        <h3>1400</h3>
+                        <p>People Impacted</p>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 cal-item">
+                        <h3>1250</h3>
+                        <p>Money Donated</p>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 cal-item">
+                        <h3>1600</h3>
+                        <p>Total Volunteer</p>
+                        <div class="divider"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="success-story">
+            <div class="container-fluid">
+                <div class="headings">
+                    <div class="heading">
+                        <h2>SUCCESS STORY</h2>
+                    </div>
+                    <div class="sub-heading">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis aliquid aliquam eveniet
+                        excepturi maxime enim ab animi voluptas quod! Blanditiis error esse porro dolorem illo aliquid
+                        dolores, ipsam mollitia architecto.
+                    </div>
+                </div>
+                <div class="stories">
+                    <div class="story">
+                        <div class="upper">
+                            <img src="assets/images/image-1.avif" alt="">
+                        </div>
+                        <div class="lower">
+                            <div class="title">
+                                <p>MARTIN SMITH 29 JULY , 2016</p>
+                            </div>
+                            <h6>CREATIVITY TAKES COURAGE</h6>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi nesciunt aperiam labore
+                                alias dolores deserunt dolorum officiis quis! Vero doloremque rem labore ipsam cum
+                                voluptate tempora sunt veniam eum eos.</p>
+                        </div>
+                    </div>
+                    <div class="story">
+                        <div class="upper">
+                            <img src="assets/images/image-2.avif" alt="">
+                        </div>
+                        <div class="lower">
+                            <div class="title">
+                                <p>MARTIN SMITH 29 JULY , 2016</p>
+                            </div>
+                            <h6>CREATIVITY TAKES COURAGE</h6>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi nesciunt aperiam labore
+                                alias dolores deserunt dolorum officiis quis! Vero doloremque rem labore ipsam cum
+                                voluptate tempora sunt veniam eum eos.</p>
+                        </div>
+                    </div>
+                    <div class="story">
+                        <div class="upper">
+                            <img src="assets/images/image-3.avif" alt="">
+                        </div>
+                        <div class="lower">
+                            <div class="title">
+                                <p>MARTIN SMITH 29 JULY , 2016</p>
+                            </div>
+                            <h6>CREATIVITY TAKES COURAGE</h6>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi nesciunt aperiam labore
+                                alias dolores deserunt dolorum officiis quis! Vero doloremque rem labore ipsam cum
+                                voluptate tempora sunt veniam eum eos.</p>
+                        </div>
+                    </div>
 
-        <a href="/donar_signup"> Signup as Donar </a>
-        <a href="/ngo_signup"> Signup as NGO </a>
-        <a href="/login"> Login</a>
-        
-        
-        <a href="/logout">Logout</a>
-        
-    </div>
-    <script>
+                </div>
+            </div>
+        </section>
+        <section class="client-logo">
+            <div class="container">
+                <div class="row logos">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 logo">
+                        <img src="assets/images/client-logo-1.png" alt="">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 logo">
+                        <img src="assets/images/client-logo-2.png" alt="">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 logo">
+                        <img src="assets/images/client-logo-3.png" alt="">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-6 logo">
+                        <img src="assets/images/client-logo-4.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="help-form">
+            <div class="container">
+                <div class="row form-content">
+                    <div class="col-lg-6 col-md-12 left"
+                        style="background-image: url('assets/images/form-image.avif'); background-size: cover;">
+                    </div>
+                    <div class="col-lg-6 col-md-12 right">
+                        <h6>SERVE THE HUMANITY</h6>
+                        <h3>Some people really need your help</h3>
+                        <form action="">
+                            <label for="name"></label>
+                            <input style="width: 100%;" type="text" id="name" placeholder="*Your Name">
+                            <label for="email"></label>
+                            <input style="width: 100%;" type="text" id="email"
+                                placeholder="*Your Email">
+                            <div class="sign-in">
+                                <a href="">SIGN UP NOW</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-    </script>
+            </div>
+        </section>
+        <section class="any-questions">
+            <div class="container">
+                <div class="headings">
+                    <div class="heading">
+                        <h2>Any Questions</h2>
+                    </div>
+                    <div class="sub-heading">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos beatae voluptate, illum
+                            harum porro veritatis corrupti. Exercitationem aspernatur iusto, ipsum quo, excepturi velit
+                            alias doloribus corporis quos numquam iste itaque?</p>
+                    </div>
+                </div>
+                <div class="contacts">
+                    <div class=" contact">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h6>Contact Address</h6>
+                        <p>301 The Greenhouse ,Custard,<br>Factory ,London, E2 8DY.</p>
+                    </div>
+                    <div class="contact">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h6>Call Us Today!</h6>
+                        <p>(M) +44 (0) 123 456 7890
+                            <br>
+                            (O) +44 (0) 123 456 7890
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="fa-regular fa-envelope"></i>
+                        <h6>Email</h6>
+                        <p>no-reply@domain.com
+                            <br>
+                            help@domain.com
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="fa-regular fa-clock"></i>
+                        <h6>Working Hours</h6>
+                        <p>Mon to Sat - 9 AM to 11 PM
+                            <br>
+                            Sunday - 10 AM to 6 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
-</html>

@@ -18,12 +18,10 @@ var pubnub = new Pubnub({
 module.exports.foodForm = (req, res) => {
     const userId = req.params.userid;
     res.render("food_details.ejs", { userId });
-    console.log("in food form", req.params);
 }
 
 module.exports.foodCreated = async (req, res) => {
     try {
-        console.log("Creating Food Item")
         const { food_name, food_quantity, unit } = req.body;
         const userId = req.user.id;
         const newFood = new FoodDetails({
@@ -31,15 +29,13 @@ module.exports.foodCreated = async (req, res) => {
             quantity: food_quantity,
             unit: unit,
             donatedby: req.user.id
+            // donatedTo: 
         });
 
         await newFood.save();
 
         const user_data = await Donar.findById(userId);
-        console.log(user_data);
-        console.log(newFood.id);
         user_data.donated.push(newFood.id);
-        console.log(user_data.donated);
         // res.send("Done");
         await user_data.save();
         // const newFoodDetail = 
@@ -54,7 +50,6 @@ module.exports.foodCreated = async (req, res) => {
 module.exports.showNgo = async (req, res) => {
     const foodId = req.params.foodId;
     const userId = req.params.userId;
-    console.log(foodId, userId)
     const ngo_listing = await Ngo.find({})
     res.render("ngo_listing.ejs", { ngo_listing, userId, foodId });
 
@@ -63,14 +58,12 @@ module.exports.showNgo = async (req, res) => {
 module.exports.confirmationForm = async (req, res) => {
     // const foodId = req.params.foodId;
     // const userId = req.params.userId;
-    console.log(`params ${req.params}`)
     const ngoId = req.params.ngoId;
     // console.log(ngoId);
     const selected_ngo = await Ngo.findById({ _id: ngoId });
     // console.log(selected_ngo)
     // console.log(userId);
     const food_data = await Donar.findById({ _id: req.user.id }).populate("donated")
-    console.log(`Food Data : ${food_data}`);
     res.render("donation_confirm.ejs" , {selected_ngo});
     // res.render("donation_confirm.ejs", { selected_ngo: selected_ngo, food_data, ngoId, userId, foodId });
 }
@@ -78,14 +71,19 @@ module.exports.confirmationForm = async (req, res) => {
 module.exports.confirmed = async (req, res) => {
     const message = req.body;
     const ngoId = req.params.ngoId;
-    // const userId = req.params.userId;
+    const userId = JSON.stringify(req.user.id).slice(1,-1);
+    const donar = await Donar.findById(userId);
+    console.log(donar.email);
+    console.log(`in confirmed ${userId}`);
     // const foodId = req.params.foodId;
 
     let publishPayload = {
-        channel:"donate",
+        channel:`donate${ngoId}`,
         message: {
             title:"greeting",
             description:message,
+            email:donar.email,
+            city:donar.city,
         },
     }
 

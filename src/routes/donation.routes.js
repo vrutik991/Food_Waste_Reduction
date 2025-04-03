@@ -10,7 +10,7 @@ const donationController = require("../controllers/donation.controller.js")
 
 router.get("/", authenticateToken , donationController.foodForm);
 
-router.post("/", authenticateToken , donationController.foodCreated)
+router.post("/", authenticateToken , donationController.foodCreated);
 
 router.get("/showNgo", authenticateToken , donationController.showNgo);
 

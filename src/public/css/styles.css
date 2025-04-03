@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container
+{
+    width: 70%;
+    margin: 0 auto;
+}
+.listings
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.listing
+{
+    height: 300px;
+    width: 400px;
+}
