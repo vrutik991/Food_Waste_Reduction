@@ -1,0 +1,20 @@
+ /* Basic styles for the dropdown */
+ #suggestions {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none; /* Initially hidden */
+    position: absolute; /* Positioning for dropdown */
+    background-color: white;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}

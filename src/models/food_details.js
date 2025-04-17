@@ -13,6 +13,14 @@ const foodSchema = new mongoose.Schema({
     {
         type:String,
     },
+    city:
+    {
+        type:String,
+    },
+    state:
+    {
+        type:String,
+    },
     donatedby:
     {
         type:mongoose.Schema.Types.ObjectId,

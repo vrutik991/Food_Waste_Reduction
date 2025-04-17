@@ -16,30 +16,33 @@ var pubnub = new Pubnub({
 })
 
 module.exports.foodForm = (req, res) => {
+    const ngoId = req.params.ngoId;
     const userId = req.params.userid;
-    res.render("food_details.ejs", { userId });
+    res.render("food_details.ejs", { userId , ngoId });
 }
 
 module.exports.foodCreated = async (req, res) => {
     try {
         const { food_name, food_quantity, unit } = req.body;
+        const ngoId = req.params.ngoId;
         const userId = req.user.id;
         const newFood = new FoodDetails({
             name: food_name,
             quantity: food_quantity,
             unit: unit,
-            donatedby: req.user.id
-            // donatedTo: 
+            donatedby: req.user.id,
+            donatedTo: ngoId,
         });
 
         await newFood.save();
-
+        console.log(`before donated ${userId}`)
         const user_data = await Donar.findById(userId);
+        console.log(user_data)
         user_data.donated.push(newFood.id);
         // res.send("Done");
         await user_data.save();
         // const newFoodDetail = 
-        res.redirect(`/food_details/showNgo`)
+        res.redirect(`/listing/${ngoId}/food_details/donation_confirm`)
         // res.redirect(`/${userId}/food_details/${user_data._id}`)
     } catch (error) {
         console.error(error);
@@ -47,11 +50,18 @@ module.exports.foodCreated = async (req, res) => {
     }
 }
 
-module.exports.showNgo = async (req, res) => {
+module.exports.showListing = async (req, res) => {
     const foodId = req.params.foodId;
     const userId = req.params.userId;
     const ngo_listing = await Ngo.find({})
     res.render("ngo_listing.ejs", { ngo_listing, userId, foodId });
+
+}
+
+module.exports.showNgo = async (req, res) => {
+    const ngoId = req.params.ngoId;
+    const ngo_listing = await Ngo.findById(ngoId);
+    res.render("showNgo.ejs", { ngo_listing });
 
 }
 
@@ -64,7 +74,9 @@ module.exports.confirmationForm = async (req, res) => {
     // console.log(selected_ngo)
     // console.log(userId);
     const food_data = await Donar.findById({ _id: req.user.id }).populate("donated")
-    res.render("donation_confirm.ejs" , {selected_ngo});
+    console.log(food_data.donated);
+    const donated = food_data.donated;
+    res.render("donation_confirm.ejs" , {selected_ngo , donated});
     // res.render("donation_confirm.ejs", { selected_ngo: selected_ngo, food_data, ngoId, userId, foodId });
 }
 
@@ -72,6 +84,7 @@ module.exports.confirmed = async (req, res) => {
     const message = req.body;
     const ngoId = req.params.ngoId;
     const userId = JSON.stringify(req.user.id).slice(1,-1);
+    console.log(userId);
     const donar = await Donar.findById(userId);
     console.log(donar.email);
     console.log(`in confirmed ${userId}`);
@@ -87,6 +100,9 @@ module.exports.confirmed = async (req, res) => {
         },
     }
 
+    donar.donated=[];
+    donar.save();
+    
     pubnub.publish(publishPayload,function(status,response) {
         if(status.error)
         {
@@ -100,10 +116,13 @@ module.exports.confirmed = async (req, res) => {
     console.log(`in last ${ngoId}`)
 
     console.log(message);
-    // const request = new Requests({
-    //     requestedby: userId,
-    //     requestedto: ngoId
-    // })
-    // request.save();
-    res.redirect("/food_details");
+    const request = new Requests({
+        name: donar.name,
+        message: req.body.message,
+        location: donar.city,
+        requestedby: userId,
+        requestedto: ngoId
+    })
+    request.save();
+    res.redirect("/home");
 }

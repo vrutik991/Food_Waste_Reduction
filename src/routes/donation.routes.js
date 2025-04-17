@@ -8,13 +8,19 @@ const { authenticateToken , forHome} = require("../middleware.js");
 
 const donationController = require("../controllers/donation.controller.js")
 
-router.get("/", authenticateToken , donationController.foodForm);
+router.get("/", authenticateToken , donationController.showListing);
 
-router.post("/", authenticateToken , donationController.foodCreated);
+router.get("/:ngoId", authenticateToken , donationController.showNgo);
 
-router.get("/showNgo", authenticateToken , donationController.showNgo);
+router.get("/:ngoId/food_details", authenticateToken , donationController.foodForm);
 
-router.get("/showNgo/:ngoId", authenticateToken ,  donationController.confirmationForm);
+router.post("/:ngoId/food_details", authenticateToken , donationController.foodCreated);
+
+// router.post("/", authenticateToken , donationController.foodCreated);
+
+// router.get("/showNgo", authenticateToken , donationController.showNgo);
+
+router.get("/:ngoId/food_details/donation_confirm", authenticateToken ,  donationController.confirmationForm);
 
 router.post("/showNgo/:ngoId/ngo_dashboard", authenticateToken ,donationController.confirmed);
 

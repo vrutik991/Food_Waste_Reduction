@@ -1,51 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('/layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGO Dashboard</title>
-    
-</head>
+    <body>
+        <div class="container">
+            <h1>NGO Dashboard</h1>
+            <p>NGO ID: <%= ngoId %>
+            </p>
+            <h1>Requests to You: </h1>
+            <div class="row">
+                <% requests.map((request)=>{ %>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card" style="width: 16rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Name : <%= request.name %>
+                                </h4>
+                                <h5 class="card-subtitle mb-2 text-body-secondary">Location: <%= request.location %>
+                                </h5>
+                                <p class="card-text" style="margin-bottom: 10px;">Message: <%= request.message %>
+                                </p>
+                                <!-- <a href="#" class="card-link">Accept</a>
+                                    <a href="#" class="card-link">Reject</a> -->
+                                <a style="margin-right: 20px;" class="btn btn-primary" href="/acceptRequest/<%= request._id %>" role="button">Accept</a>
+                                <a class="btn btn-primary" href="/rejectRequest/<%= request._id %>" role="button">Reject</a>
+                            </div>
+                        </div>
+                    </div>
 
-<body>
-    <div class="container">
-        <h1>NGO Dashboard</h1>
-        <p>NGO ID: <%= ngoId %></p>
-        <h1>Requests to You: </h1>
-        <h2 class="email"></h2>
+                    <% }) %>
+            </div>
+            <!-- <h2 class="email"></h2>
         <p class="message"></p>
-        <a href="/logout">logout</a>
-    </div>
-    <!-- <script src="../public/js/pubnub.js"></script> -->
-     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.js"></script>
-    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.min.js"></script>
-    <script>
-        console.log("In UI *******************************")
-        const email = document.querySelector(".email");
-        const message = document.querySelector(".message");
-        const ngoId =`<%= ngoId %>`;
-        console.log(ngoId);
-        // const Pubnub = require("")
-        var pubnub = new PubNub({
-            publishKey: "pub-c-8a75198e-e9b5-4595-9707-7bee8da7c913",
-            subscribeKey: "sub-c-c1f806e6-b3b7-4a4c-8f76-7d9a54d67477",
-            userId: 'myUniqueUserId'
-        })
+        <div class="accept"></div>
+        <div class="reject"></div>
+        <br> -->
+            <a href="/logout">Logout</a>
 
-        pubnub.subscribe({
-            channels: [`donate${ngoId}`],
-        })
+        </div>
+        <!-- <script src="../public/js/pubnub.js"></script> -->
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.js"></script>
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.9.3.2.min.js"></script>
+        <script>
+            console.log("In UI *******************************")
+            const email = document.querySelector(".email");
+            const message = document.querySelector(".message");
+            const accept = document.querySelector(".accept");
+            const reject = document.querySelector(".reject");
+            const ngoId = `<%= ngoId %>`;
+            console.log(ngoId);
+            // const Pubnub = require("")
+            var pubnub = new PubNub({
+                publishKey: "pub-c-8a75198e-e9b5-4595-9707-7bee8da7c913",
+                subscribeKey: "sub-c-c1f806e6-b3b7-4a4c-8f76-7d9a54d67477",
+                userId: 'myUniqueUserId'
+            })
 
-        pubnub.addListener({
-            message: function (m) {
-                console.log(JSON.stringify(m.message.description.message));
-                email.innerHTML = `Donar Email: ${JSON.stringify(m.message.email)}`;
-                message.innerHTML = `Donar Message: ${JSON.stringify(m.message.description.message)}`;
-                alert(m.message.email + " " +JSON.stringify(m.message.description.message));
-            }
-        })
-    </script>
-</body>
+            pubnub.subscribe({
+                channels: [`donate${ngoId}`],
+            })
 
-</html>
+            pubnub.addListener({
+                message: function (m) {
+                    // console.log(JSON.stringify(m.message.description.message));
+                    // var Email = `Donar Email: ${JSON.stringify(m.message.email)}`;
+                    // email.innerHTML = `Donar Email: ${JSON.stringify(m.message.email)}`;
+                    // message.innerHTML = `Donar Message: ${JSON.stringify(m.message.description.message)}`;
+                    alert(m.message.email + ":" + JSON.stringify(m.message.description.message));
+                    // accept.innerHTML = `<a href="/logout">Accept</a>`;
+                    // reject.innerHTML = `<a href="/logout">Reject</a>`;
+                    // location.reload();
+                    window.location.href = window.location.href;
+                }
+            })
+            // email.innerHTML = `${Email}`;
+            fetch("/storeRequest");
+        </script>
+    </body>

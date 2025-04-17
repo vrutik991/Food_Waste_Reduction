@@ -8,6 +8,7 @@ const Ngo = require("./models/ngo")
 const FoodDetails = require("./models/food_details");
 const mongoose = require('mongoose');
 const sendNotificationEmail = require("./mailer");
+const sendResponseEmail = require("./responseMailer");
 const session = require("express-session");
 const Donar = require("./models/donar");
 const jwt = require("jsonwebtoken");
@@ -18,6 +19,7 @@ const cookieParser=require("cookie-parser");
 const { log } = require("console");
 const Requests = require("./models/request.js");
 const Pubnub = require("pubnub");
+const foodName = require("./models/food_name.js");
 
 const MONGO_URI = "mongodb://localhost:27017/food_waste_reduction";
 
@@ -71,7 +73,7 @@ app.get("/index",(req,res)=>
 })
 
 app.use("/",userRouter);
-app.use("/showNgo",donationRouter);
+app.use("/listing",donationRouter);
 
 
 var pubnub = new Pubnub({
@@ -84,6 +86,8 @@ var pubnub = new Pubnub({
 app.get("/ngo_dashboard",authenticateToken,async (req, res) => {
     const ngoId = JSON.stringify(req.user.id).slice(1,-1);
     console.log(`ngo get: ${ngoId}`)
+    const requests = await Requests.find({requestedto:ngoId});
+    console.log(`requests = ${requests}`)
     // const myNgo_data = Ngo.findOne({myNgo})
     // console.log(myNgo_data)
     
@@ -99,7 +103,7 @@ app.get("/ngo_dashboard",authenticateToken,async (req, res) => {
     // })
     const foodDetails = await FoodDetails.find({donatedTo:ngoId})
     console.log(`foodDetails: *** ${foodDetails}`)
-    res.render("ngo_dashboard.ejs" , {ngoId , foodDetails});
+    res.render("ngo_dashboard.ejs" , {ngoId , foodDetails , requests});
 })
 
 // API route to send email notification
@@ -144,6 +148,49 @@ app.post("/ngo_home", (req, res) => {
 //     });
 // });
 
+app.get('/suggestions', async (req, res) => {
+    const query = req.query.q; // Get the query parameter
+    try {
+        console.log("In suggestions");
+        const foodNames = await foodName.find({$or:[ {name: { $regex: query, $options: 'i' }} ,{keywords: { $in: [query] }}] }).limit(10); // Fetch matching recipes
+        const suggestions = foodNames.map(foodname => foodname.name); // Extract names for suggestions
+        res.json(suggestions); // Send suggestions as JSON
+        console.log(suggestions);
+    } catch (error) {
+        console.error('Error fetching suggestions:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get("/acceptRequest/:requestId",async (req,res)=>
+{   
+    const requestId = req.params.requestId;
+    const request = await Requests.findById({_id:requestId})
+    const donar = await Donar.findById({_id:request.requestedby});
+    const ngo = await Ngo.findById({_id:request.requestedto});
+    const userEmail = donar.email;
+    console.log("userEmail",userEmail)
+    try {
+        await sendResponseEmail(userEmail,ngo,donar);
+        await Requests.deleteOne({_id:requestId})
+        res.redirect("/ngo_dashboard");
+        // res.status(200).json({ message: "Notification sent successfully!" });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to send notification" });
+    }
+    // const request = await Requests.deleteOne({_id:requestId});
+})
+app.get("/rejectRequest/:requestId",async (req,res)=>
+{   
+    const requestId = req.params.requestId;
+    console.log(requestId)
+    try {
+    await Requests.deleteOne({_id:requestId});
+     } catch (e) {
+        console.log(e);
+     }
+    res.redirect("/ngo_dashboard");
+})
 
 app.listen(4000, () => {
     console.log("Listening to 4000");
