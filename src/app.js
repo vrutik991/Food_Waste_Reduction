@@ -63,13 +63,18 @@ app.use((req,res,next)=>
 {
     res.locals.currUser = req.user;
     console.log("in currUser middleware",res.locals.currUser);
-    JSON.stringify(req.user);
+    // JSON.stringify(req.user);
     next();
 })
 
 app.get("/index",(req,res)=>
 {
     res.render("index.ejs");
+})
+
+app.get("/about-us",(req,res)=>
+{
+    res.render("about_us.ejs");
 })
 
 app.use("/",userRouter);

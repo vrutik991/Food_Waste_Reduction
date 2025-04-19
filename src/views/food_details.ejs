@@ -8,20 +8,20 @@
                         <div class=" col-6 mb-3">
                             <div style="position: relative;"> <!-- Relative positioning for dropdown -->
                                 <!-- <input type="text" id="activityInput" placeholder="Type an ingredient..." /> -->
-                                <label for="food_name" class="form-label">Enter Food Name: </label>
+                                <label for="food_name" class="form-label">Enter Food Name: *</label>
                                 <input type="text" class="form-control" id="food_name" name="food_name"
-                                    aria-describedby="emailHelp">
+                                    aria-describedby="emailHelp" required>
                                 <div id="emailHelp" class="form-text">Please Enter proper food Name</div>
                                 <div id="suggestions"></div>
                             </div>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="food_quantity" class="form-label">Food Quantity: </label>
-                            <input type="number" class="form-control" id="food_quantity" name="food_quantity">
+                            <label for="food_quantity" class="form-label">Food Quantity: *</label>
+                            <input type="number" class="form-control" id="food_quantity" name="food_quantity" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Food Measure: </label>
-                            <select class="form-control" id="unit" name="unit">
+                            <label for="exampleInputPassword1" class="form-label">Food Measure: *</label>
+                            <select class="form-control" id="unit" name="unit" required>
                                 <option value="people">People</option>
                                 <option value="plate">Plate</option>
                                 <option value="kg">Kg</option>
@@ -31,12 +31,12 @@
                             </select>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="state" class="form-label">State: </label>
-                            <input type="text" class="form-control" id="state" name="state">
+                            <label for="state" class="form-label">State: *</label>
+                            <input type="text" class="form-control" id="state" name="state" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <label for="city" class="form-label">City: </label>
-                            <input type="text" class="form-control" id="city" name="city">
+                            <label for="city" class="form-label">City: *</label>
+                            <input type="text" class="form-control" id="city" name="city" required>
                         </div>
                         <!-- <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
