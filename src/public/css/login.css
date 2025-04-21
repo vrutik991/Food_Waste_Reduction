@@ -1,0 +1,14 @@
+.login_btn
+{
+    background-color: #ff573d;
+    transition: 0.5s;
+}
+.login_btn:hover
+{
+    transform: scale(1.1);
+}
+
+.donar_signup , .ngo_signup
+{
+    color: #ff573d;
+}

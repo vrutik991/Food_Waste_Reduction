@@ -4,7 +4,8 @@ const { Schema } = mongoose.Schema;
 const requestSchema = new mongoose.Schema({
     name: String,
     message: String,
-    location: String,
+    city: String,
+    area: String,
     requestedby:
     {
         type:mongoose.Schema.Types.ObjectId,

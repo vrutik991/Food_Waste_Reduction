@@ -17,6 +17,14 @@
                             </p>
                             <p>Quantity : <b><%= donate.quantity %> </b><%= donate.unit %> </p>
                             <% }) %>
+                            <div class="col-6 mb-3">
+                                <label for="city" class="form-label">City: *</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="area" class="form-label">Area: *</label>
+                                <input type="text" class="form-control" id="area" name="area" required>
+                            </div>
                                 <div class=" col-6 mb-3">
                                     <label for="message" class="form-label">Any Message </label>
                                     <textarea type="text" class="form-control" id="message" name="message"

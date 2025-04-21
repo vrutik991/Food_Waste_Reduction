@@ -32,14 +32,16 @@ module.exports.postLogin =  async (req, res) => {
                     });
                     // res.header("Authorization", `Bearer ${token}`);
                     res.locals.currUser = Isuser.id;
-                    console.log(Isuser)
+                    console.log(Isuser);
                     console.log("In login post route ",res.locals.currUser);
                     console.log(`in post : ${Isuser.id}`)
-                    res.render(`home.ejs`); 
+                    // req.flash("success","Welcome to Wonderlust! You are logged in!");
+                    res.render(`home.ejs`,{token});
                     // res.redirect(`/`);
                 }
                 else
                 {
+                    // req.flash("error","Incorrect Email or Password");
                     res.render("login.ejs");
                 }
             });
@@ -107,7 +109,7 @@ module.exports.donarSignup = async (req, res) => {
 }
 
 module.exports.ngoSignup = async (req, res) => {
-    const { name, email, contact, password, focus_area , city, state , website , registration_year} = req.body ;
+    const { name, email, contact, password , city, state , area , website} = req.body ;
     // User Registration (Signup)
 
     try {
@@ -120,7 +122,7 @@ module.exports.ngoSignup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Save user to DB
-        const newNgo = new Ngo({ name, contact, city, state, email, password: hashedPassword , website , registration_year , focus_area});
+        const newNgo = new Ngo({ name, contact, city, state, email, password: hashedPassword , website , area});
         await newNgo.save();
 
         // Generate JWT Token
