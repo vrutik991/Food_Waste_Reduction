@@ -1,0 +1,19 @@
+<% layout('/layouts/boilerplate') -%>
+
+<body>
+    <div class="container showNgo">
+        <div class="row">
+            <div class="col-12 offset-3">
+                <h1><%= ngo_listing.name %></h1>
+                <h1>Image</h1>
+                <p>City: <%= ngo_listing.city %></p>
+                <p>State: <%= ngo_listing.state %></p>
+                <p>Email: <%= ngo_listing.email %></p>
+                <p>Contact: <%= ngo_listing.contact %></p>
+                <p>Website: <%= ngo_listing.website %></p>
+                <p>Registration Year: <%= ngo_listing.registration_year %></p>
+                <a class="btn btn-primary" href="/listing/<%= ngo_listing._id %>/food_details" role="button">Donate Now</a>
+            </div>
+        </div>
+    </div>
+</body>
