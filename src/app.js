@@ -170,7 +170,7 @@ app.get("/acceptRequest/:requestId",async (req,res)=>
 {   
     const requestId = req.params.requestId;
     const request = await Requests.findById({_id:requestId})
-    const donar = await Donar.findById({_id:request.requestedby});
+    const donar = await Donar.finddById({_id:request.requestedby});
     const ngo = await Ngo.findById({_id:request.requestedto});
     const userEmail = donar.email;
     console.log("userEmail",userEmail)
