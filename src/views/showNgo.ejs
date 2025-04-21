@@ -10,8 +10,7 @@
                 <p>State: <%= ngo_listing.state %></p>
                 <p>Email: <%= ngo_listing.email %></p>
                 <p>Contact: <%= ngo_listing.contact %></p>
-                <p>Website: <%= ngo_listing.website %></p>
-                <p>Registration Year: <%= ngo_listing.registration_year %></p>
+                <p>Website: <a href="<%= ngo_listing.website %>"><%= ngo_listing.website %></a></p>
                 <a class="btn btn-primary" href="/listing/<%= ngo_listing._id %>/food_details" role="button">Donate Now</a>
             </div>
         </div>

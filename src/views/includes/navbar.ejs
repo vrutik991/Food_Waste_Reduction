@@ -33,8 +33,12 @@
                 <li class="nav-item">Mission</li>
                 <li class="nav-item">Success Story</li>
                 <li class="nav-item">Statistics</li>
-                <li class="nav-item nav-btn nav-btn-left"><a href="/login">Login</a></li>
-                <li class="nav-item nav-btn"><a href="/logout">Logout</a></li>
+                <% if(currUser) {%>
+                    <li class="nav-item nav-btn"><a href="/logout">Logout</a></li>
+                    <% } %>
+                        <% if(!currUser) {%>
+                            <li class="nav-item nav-btn nav-btn-left"><a href="/login">Login</a></li>
+                            <% } %>
             </ul>
         </div>
     </div>

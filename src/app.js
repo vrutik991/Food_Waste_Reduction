@@ -20,6 +20,7 @@ const { log } = require("console");
 const Requests = require("./models/request.js");
 const Pubnub = require("pubnub");
 const foodName = require("./models/food_name.js");
+const flash = require("connect-flash");
 
 const MONGO_URI = "mongodb://localhost:27017/food_waste_reduction";
 const userRouter = require("./routes/user");
@@ -60,7 +61,7 @@ app.use(cookieParser());
 
 app.use((req,res,next)=>
 {
-    res.locals.currUser = req.user;
+    res.locals.currUser = req.cookies.uid;
     console.log("in currUser middleware",res.locals.currUser);
     // JSON.stringify(req.user);
     next();
@@ -69,6 +70,11 @@ app.use((req,res,next)=>
 app.get("/index",(req,res)=>
 {
     res.render("index.ejs");
+})
+
+app.get("/home",(req,res)=>
+{
+    res.render("home.ejs");
 })
 
 app.get("/about-us",(req,res)=>
