@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
     {
         const Isuser = Donar.findOne({ email: email })
         .then((Isuser) => {
-            // console.log(Isuser);
+            console.log(Isuser);
             if (!Isuser) return res.status(400).json({ error: "User not found" });
             bcrypt.compare(password, Isuser.password, function (err, result) {
                 if (result) {
@@ -26,13 +26,12 @@ router.post("/login", async (req, res) => {
                     res.cookie("uid", token , {
                         httpOnly:true,
                     });
-                    // res.header("Authorization", `Bearer ${token}`);
+                     res.header("Authorization", `Bearer ${token}`);
                     res.locals.currUser = Isuser;
                     console.log(Isuser)
                     console.log("In login post route ",res.locals.currUser);
                     console.log(`in post : ${Isuser.id}`)
                     res.redirect(`/home`); 
-                    // res.redirect(`/`);
                 }
                 else
                 {
@@ -42,7 +41,7 @@ router.post("/login", async (req, res) => {
         }).catch((err) => {
             console.error(err);
             res.status(500).json({ error: "Internal Server Error" });
-        });
+        }); 
     } 
 
     if(usertype !== "Donar")
@@ -58,7 +57,7 @@ router.post("/login", async (req, res) => {
                     const token = jwt.sign({ id: Isuser.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
                     res.cookie("uid", token , {
                         httpOnly:true,
-                    });
+rl                    });
                     // res.header("Authorization", `Bearer ${token}`);
                     res.redirect("/ngo_dashboard");
                 }
@@ -122,7 +121,7 @@ router.post("/ngo_signup", async (req, res) => {
         // Generate JWT Token
         // const token = jwt.sign({ id: newNgo._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-            // res.status(201).render("ngo_dashboard.ejs");
+            res.status(201).render("ngo_dashboard.ejs");
             res.status(201).redirect("login");
 
 
@@ -163,4 +162,10 @@ router.get("/home/:userid",authenticateToken, async (req, res) => {
     res.render("home.ejs" , {currUser : currUser});
 })
 
-module.exports = router
+router.get("/aboutus",async (req, res) => {
+    // const currUser = await Donar.findById({userId})
+    console.log("/aboutus");
+    res.render("aboutus.ejs");
+})
+
+module.exports = router;

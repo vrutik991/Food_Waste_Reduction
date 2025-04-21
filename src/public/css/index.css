@@ -278,6 +278,7 @@ section
     padding-top: 15px;
 }
 
+
 .help-card .left
 {
     text-align: center;
@@ -302,7 +303,8 @@ section
 
 .ngo
 {
-    background-color: #282828;
+    background-color:wheat;
+    
 }
 .ngo p
 {
@@ -321,9 +323,9 @@ section
 
 /* Our causes */
 
-.causes-card .upper i{
+.causes-card .upper i {
     font-size: 50px;
-    color:#ff573d;
+    color:#ff573d; 
     margin-bottom: 20px;
 }
 
@@ -341,6 +343,7 @@ section
 {
     text-align: center;
 }
+
 
 /* Charity */
 
@@ -428,6 +431,13 @@ section
     justify-content: center;
     margin-bottom: 100px;
 }
+
+.you-help-card:hover
+{
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
 
 .you-help-card
 {
@@ -857,3 +867,13 @@ footer p
 }
 
 
+.ngo-image-placeholder {
+    width: 100%;
+    height: 160px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    margin-bottom: 1rem;
+  }

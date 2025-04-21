@@ -1,0 +1,56 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .profile-container {
+            background-color: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .info {
+            margin-top: 20px;
+        }
+        .info label {
+            font-weight: bold;
+        }
+        .info p {
+            margin: 5px 0 15px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <div class="info">
+            <label>Name:</label>
+            <p><%= user.name %></p>
+
+            <label>Email:</label>
+            <p><%= user.email %></p>
+
+            <label>Phone:</label>
+            <p><%= user.phone %></p>
+
+            <label>Address:</label>
+            <p><%= user.address %></p>
+        </div>
+    </div>
+</body>
+</html>

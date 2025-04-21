@@ -20,12 +20,11 @@ const Requests = require("./models/request.js");
 const Pubnub = require("pubnub");
 
 const MONGO_URI = "mongodb://localhost:27017/food_waste_reduction";
-
-const userRouter = require("./routes/user.js")
+const userRouter = require("./routes/user");
 const donationRouter = require("./routes/donation.routes.js");
 
 const sessionOptions = {
-    secret: "savefood@1",
+    secret: "savefood@2",
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -55,7 +54,7 @@ app.engine("ejs", ejsMate);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use(session(sessionOptions))
+ app.use(session(sessionOptions))
 
 app.use((req,res,next)=>
 {

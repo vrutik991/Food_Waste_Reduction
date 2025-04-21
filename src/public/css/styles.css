@@ -19,3 +19,16 @@
     height: 300px;
     width: 400px;
 }
+.client-logo{
+align-items: center;
+padding-left: 25px;
+}
+.donation-section {
+    margin-bottom: 40px; /* Adjust size as needed */
+  }
+  
+  /* Or add a horizontal gap between items */
+  .donation-options {
+    display: flex;
+    gap: 30px; /* Controls spacing between flex items */
+  }
