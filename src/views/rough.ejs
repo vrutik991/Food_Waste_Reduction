@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Suggestion App</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <h1>Food Suggestion App</h1>
+    <div style="position: relative;"> <!-- Relative positioning for dropdown -->
+        <input type="text" id="activityInput" placeholder="Type an ingredient..." />
+        <div id="suggestions"></div>
+    </div>
+
+    <script>
+        document.getElementById('activityInput').addEventListener('keyup', function() {
+            const query = this.value;
+
+            if (query.length > 2) { // Only call API if input length is greater than 2
+                axios.get(`/suggestions?q=${query}`) // Call the suggestions route
+                    .then(response => {
+                        const suggestions = response.data; // Assuming the response is an array of suggestions
+                        const suggestionsContainer = document.getElementById('suggestions');
+                        suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+                        if (suggestions.length > 0) {
+                            suggestions.forEach(suggestion => {
+                                const suggestionItem = document.createElement('div');
+                                suggestionItem.textContent = suggestion; // Assuming suggestion is a string
+                                suggestionItem.classList.add('suggestion-item');
+
+                                // Add click event to select suggestion
+                                suggestionItem.addEventListener('click', function() {
+                                    document.getElementById('activityInput'). value = suggestion;
+                                    suggestionsContainer.innerHTML = ''; // Clear suggestions
+                                    suggestionsContainer.style.display = 'none'; // Hide dropdown
+                                });
+
+                                suggestionsContainer.appendChild(suggestionItem);
+                            });
+                            suggestionsContainer.style.display = 'block'; // Show dropdown
+                        } else {
+                            suggestionsContainer.innerHTML = '<p>No suggestions found.</p>';
+                            suggestionsContainer.style.display = 'block'; // Show dropdown even if no suggestions
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching suggestions:', error);
+                    });
+            } else {
+                document.getElementById('suggestions').innerHTML = ''; // Clear suggestions if input is too short
+                document.getElementById('suggestions').style.display = 'none'; // Hide dropdown
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            const suggestionsContainer = document.getElementById('suggestions');
+            if (!document.getElementById('activityInput').contains(event.target)) {
+                suggestionsContainer.style.display = 'none'; // Hide dropdown
+            }
+        });
+    </script>
+</body>
+</html>

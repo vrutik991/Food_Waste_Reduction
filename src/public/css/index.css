@@ -67,7 +67,6 @@ section
 
 .navbar-items ul
 {
-    list-style: none;
     display: flex;
     margin: 0;
     gap: 20px;
@@ -80,7 +79,12 @@ section
     align-items: center;
     text-transform: uppercase;
     font-size: 13px;
-    color: white; 
+    color: white;
+}
+.nav-item a
+{
+    text-decoration: none;
+    color: white;
 }
 
 .nav-item:hover

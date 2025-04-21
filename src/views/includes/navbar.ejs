@@ -10,13 +10,17 @@
             </a>
             <div class="navbar-items">
                 <ul>
-                    <li class="nav-item nav-btn"> <a href="/aboutus">About us</a></li>
-
-                    <li class="nav-item nav-btn"><a href="/causes">Causes</a>
-                     <li class="nav-item nav-btn"><a href="/donation_confirm">Donate Now</a></li>
-
-                        <li class="nav-item nav-btn nav-btn-left"><a href="/login">Login</a></li>
+                    <li class="nav-item"><a href="/about-us">About Us</a></li>
+                    <!-- <li class="nav-item"></li> -->
+                    <li class="nav-item"><a href="">Mission</a></li>
+                    <li class="nav-item"><a href="">Success Story</a></li>
+                    <li class="nav-item"><a href="">Statistics</a></li>
+                    <% if(currUser) {%>
                         <li class="nav-item nav-btn"><a href="/logout">Logout</a></li>
+                        <% } %>
+                            <% if(!currUser) {%>
+                                <li class="nav-item nav-btn nav-btn-left"><a href="/login">Login</a></li>
+                                <% } %>
                 </ul>
             </div>
             <div class="hamburgur">
@@ -24,12 +28,12 @@
             </div>
         </nav>
         <div class="dropdown">
-            <ul>    
-                <li href="/src/views/aboutus.ejs" class="nav-item">About Us</li>
-                <li class="nav-item"><a href="/Food_Waste_Reduction/src/views/causes.ejs">Causes</a>
+            <ul>
+                <li class="nav-item">About Us</li>
+                <!-- <li class="nav-item">Causes</li> -->
                 <li class="nav-item">Mission</li>
                 <li class="nav-item">Success Story</li>
-                <li href="/contacts" class="nav-item">Contact</li>
+                <li class="nav-item">Statistics</li>
                 <li class="nav-item nav-btn nav-btn-left"><a href="/login">Login</a></li>
                 <li class="nav-item nav-btn"><a href="/logout">Logout</a></li>
             </ul>

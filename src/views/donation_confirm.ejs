@@ -1,21 +1,41 @@
 <% layout('/layouts/boilerplate') -%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Submittion</title>
-</head>
-<body>
-    <h1> NGO Name : <%= selected_ngo.name %></h1>
-    <form action="/food_details/showNgo/<%= selected_ngo.id %>/ngo_dashboard" method="POST">
-        <label for="message"> Any Message : </label>
-        <textarea name="message" id="message"></textarea>
-        <h2>Food Details : </h2>
-        <br>
-        <br>
-        <button>Send Request!</button>
-    </form>
 
-</body>
-</html>
+    <body>
+        <!-- <form action="/listing/showNgo/<%= selected_ngo.id %>/ngo_dashboard" method="POST">
+            <button>Send Request!</button>
+        </form> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-9 offset-3 mt-5">
+                    <h1> Selected NGO : <%= selected_ngo.name %>
+                    </h1>
+                    <br>
+                    <form class="foodForm" action="/listing/showNgo/<%= selected_ngo.id %>/ngo_dashboard" method="POST">
+                        <h4>Food Details : </h4>
+                        <% donated.map((donate)=>{ %>
+                            <p>Food : <b><%= donate.name %></b>
+                            </p>
+                            <p>Quantity : <b><%= donate.quantity %> </b><%= donate.unit %> </p>
+                            <% }) %>
+                                <div class=" col-6 mb-3">
+                                    <label for="message" class="form-label">Any Message </label>
+                                    <textarea type="text" class="form-control" id="message" name="message"
+                                        aria-describedby="emailHelp"></textarea>
+
+                                    <div id="emailHelp" class="form-text">Please Enter proper food Name</div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                                    <label class="form-check-label" for="exampleCheck1">Confirm Submit</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5"><button type="submit" class="btn btn-primary">Submit</button></div>
+                                    <div class="col-6"><a class="btn btn-primary" href="/listing/<%= selected_ngo.id %>/food_details" role="button">Add Another Food</a></div>
+                                </div>
+                    </form>
+                    <br>
+                    
+                </div>
+            </div>
+        </div>
+    </body>

@@ -1,8 +1,10 @@
 const MONGO_URI="mongodb://localhost:27017/food_waste_reduction"
 
 const mongoose = require("mongoose");
-const Ngo = require("../models/ngo");
-const Ngodata = require("./data.js") 
+const Ngo = require("../src/models/ngo");
+const Ngodata = require("./data.js");
+const foodData = require("./food_name.js");
+const food = require("../src/models/food_name.js")
 
 
 main().then(()=>
@@ -23,5 +25,7 @@ async function main()
 function initDB(){
     Ngo.deleteMany({});
     Ngo.insertMany(Ngodata.data);
+    food.deleteMany({});
+    food.insertMany(foodData.foodName);
 }
 initDB();
