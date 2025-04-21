@@ -5,11 +5,11 @@ const ngoSchema = new mongoose.Schema({
     name: String,
     city: String, 
     state: String,
+    area:String,
     email: String,
-    contact: Number,
+    contact: String,
     website:String,
     pincode:Number,
-    registration_year:Number,
     password:String,
 })
 

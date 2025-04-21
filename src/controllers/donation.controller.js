@@ -82,6 +82,9 @@ module.exports.confirmationForm = async (req, res) => {
 
 module.exports.confirmed = async (req, res) => {
     const message = req.body;
+    const city = req.body.city;
+    const area = req.body.area;
+    console.log("city and area" , city , area);
     const ngoId = req.params.ngoId;
     const userId = JSON.stringify(req.user.id).slice(1,-1);
     console.log(userId);
@@ -119,7 +122,8 @@ module.exports.confirmed = async (req, res) => {
     const request = new Requests({
         name: donar.name,
         message: req.body.message,
-        location: donar.city,
+        city: city,
+        area:area,
         requestedby: userId,
         requestedto: ngoId
     })

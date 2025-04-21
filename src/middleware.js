@@ -22,6 +22,11 @@ module.exports.authenticateToken = (req, res, next) => {
     });
 };
 
+module.exports.currUser = (req , res , next) =>
+{
+    const currUser = req.cookies.uid;
+}
+
 router.use(this.authenticateToken);
 
 // module.exports.forHome = (req, res, next) => {
